@@ -189,7 +189,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &259910855
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259910852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -268,7 +268,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
+  playerFriction: 0.9
+  gravityScale: 3
   jumpHeight: 10
+  jumpOn:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +368,7 @@ GameObject:
   - component: {fileID: 1331068588}
   - component: {fileID: 1331068587}
   - component: {fileID: 1331068589}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
