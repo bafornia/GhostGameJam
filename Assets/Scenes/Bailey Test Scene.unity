@@ -452,7 +452,7 @@ MonoBehaviour:
   coyoteTimeLength: 0.5
   jumpOn:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
 --- !u!61 &1449046193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -466,7 +466,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -477,7 +477,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 1, y: 1.3}
   m_EdgeRadius: 0
 --- !u!50 &1449046194
 Rigidbody2D:
@@ -508,7 +508,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449046191}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0c906395ed91dc1429f3a69ce394398e, type: 2}
   m_CullingMode: 0
@@ -578,7 +578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449046191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.2987676, y: -0.04982546, z: 0}
+  m_LocalPosition: {x: -7.2987676, y: -0.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
