@@ -17,8 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     // jumping
 
-    [Tooltip("Same as the rigidbody gravity scale, just manipulatable here for convenience." +
-             "Leave at zero to not change it from what is set in the rigidbody component.")]
+    [Tooltip("Same as the rigidbody gravity scale, just manipulatable here for convenience." + "Leave at zero to not change it from what is set in the rigidbody component.")]
     public float gravityScale= 0;
 
     [Tooltip("The highest jump the player can make.")]
@@ -102,8 +101,6 @@ public class PlayerMovement : MonoBehaviour
 
             jumpHeightCounter += 50 * Time.deltaTime;
         }
-
-        print(myBoxCol.bounds.size);
     }
 
     private bool IsGrounded()
