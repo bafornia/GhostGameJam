@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         jumpBufferCounter -= (jumpBufferCounter - jumpBuffer) * BoolToInt(Input.GetKeyDown("space") && !IsGrounded());
 
         if ((Input.GetKeyDown("space") && (IsGrounded() || coyoteTimeCounter <= coyoteTimeLength))
-        || (jumpBufferCounter >= 0 && Input.GetKey("space") && IsGrounded()))
+        || (jumpBufferCounter >= 0 && Input.GetKey("space") && IsGrounded() && myRb.velocity.y <= 0))
         {
             jumpHeightCounter = 1;
             coyoteTimeCounter = coyoteTimeLength;

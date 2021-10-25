@@ -272,7 +272,7 @@ MonoBehaviour:
   gravityScale: 5
   maxJumpHeight: 16
   jumpSpeed: 15
-  jumpBuffer: 0.3
+  jumpBuffer: 0.2
   coyoteTimeLength: 0.1
   jumpOn:
     serializedVersion: 2
