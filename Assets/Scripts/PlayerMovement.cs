@@ -17,8 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     // jumping
 
-    [Tooltip("Same as the rigidbody gravity scale, just manipulatable here for convenience." +
-             "Leave at zero to not change it from what is set in the rigidbody component.")]
+    [Tooltip("Same as the rigidbody gravity scale, just manipulatable here for convenience." + "Leave at zero to not change it from what is set in the rigidbody component.")]
     public float gravityScale= 0;
 
     [Tooltip("The highest jump the player can make.")]
@@ -85,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         jumpBufferCounter -= (jumpBufferCounter - jumpBuffer) * BoolToInt(Input.GetKeyDown("space") && !IsGrounded());
 
         if ((Input.GetKeyDown("space") && (IsGrounded() || coyoteTimeCounter <= coyoteTimeLength))
-        || (jumpBufferCounter >= 0 && Input.GetKey("space") && IsGrounded()))
+        || (jumpBufferCounter >= 0 && Input.GetKey("space") && IsGrounded() && myRb.velocity.y <= 0))
         {
             jumpHeightCounter = 1;
             coyoteTimeCounter = coyoteTimeLength;
@@ -106,14 +105,14 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, 0, 0), 0f, Vector2.down, 0.1f, jumpOn).collider != null;
+        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, 0.5f, 0), 0f, Vector2.down, 0.35f, jumpOn).collider != null;
         //i learned this method from this video https://www.youtube.com/watch?v=ptvK4Fp5vRY
         //i adjusted the boxcast size in order to prevent the player from jumping off the sides of walls
     }
 
     private bool BumpedCeiling()
     {
-        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, 0, 0), 0f, Vector2.up, 0.1f, jumpOn).collider != null;
+        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, 0.5f, 0), 0f, Vector2.up, 0.35f, jumpOn).collider != null;
     }
 
     int BoolToInt(bool i)
