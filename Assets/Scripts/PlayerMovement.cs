@@ -102,18 +102,20 @@ public class PlayerMovement : MonoBehaviour
 
             jumpHeightCounter += 50 * Time.deltaTime;
         }
+
+        print(myBoxCol.bounds.size);
     }
 
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, 0, 0), 0f, Vector2.down, 0.1f, jumpOn).collider != null;
+        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, 0.5f, 0), 0f, Vector2.down, 0.35f, jumpOn).collider != null;
         //i learned this method from this video https://www.youtube.com/watch?v=ptvK4Fp5vRY
         //i adjusted the boxcast size in order to prevent the player from jumping off the sides of walls
     }
 
     private bool BumpedCeiling()
     {
-        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, 0, 0), 0f, Vector2.up, 0.1f, jumpOn).collider != null;
+        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, 0.5f, 0), 0f, Vector2.up, 0.35f, jumpOn).collider != null;
     }
 
     int BoolToInt(bool i)
