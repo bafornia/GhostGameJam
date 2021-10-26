@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 259910856}
   - component: {fileID: 259910855}
   - component: {fileID: 259910858}
+  - component: {fileID: 259910859}
   - component: {fileID: 259910854}
   - component: {fileID: 259910853}
   - component: {fileID: 259910857}
@@ -231,7 +232,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 71850824334124784, guid: 17e26973aad59f7469202ddf7c305958, type: 3}
+  m_Sprite: {fileID: -3931015714195750488, guid: 09407357e2dfe4a4fbf5419484e4d17a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -297,6 +298,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &259910859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259910852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0dd272f2ea408140a6bb425b1b68ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 259910858}
+  maxSpeed: 5
+  playerFriction: 0.9
+  gravityScale: 0
+  maxJumpHeight: 10
+  jumpSpeed: 15
+  jumpBuffer: 0.3
+  coyoteTimeLength: 0.5
+  jumpOn:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &424406887
 GameObject:
   m_ObjectHideFlags: 0

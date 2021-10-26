@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 1449046193}
   - component: {fileID: 1449046192}
   m_Layer: 0
-  m_Name: Temp_Walk_Protag_0
+  m_Name: Player_Chara
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
