@@ -47,12 +47,14 @@ public class GhostAI : MonoBehaviour
 
         // chasing AI
 
-        float distanceToPlayer = (player.transform.position - ghostPosition).sqrMagnitude;
-        float chaseRange = new Vector3(xChaseRange, yChaseRange, 0).sqrMagnitude;
+        Vector3 distanceToPlayer = player.transform.position - ghostPosition;
         float distanceToSentry = (ghostPosition - sentryPosition).sqrMagnitude;
         float playerToSentryDistance = (player.transform.position - sentryPosition).sqrMagnitude;
 
-        if (distanceToPlayer <= chaseRange && distanceToSentry <= giveUpRange * giveUpRange && playerToSentryDistance <= giveUpRange * giveUpRange)
+        if (distanceToPlayer.x <= xChaseRange
+            && distanceToPlayer.y <= yChaseRange
+            && distanceToSentry <= giveUpRange * giveUpRange
+            && playerToSentryDistance <= giveUpRange * giveUpRange)
         {
             ghostPosition += chaseSpeed * (player.transform.position - ghostPosition).normalized * Time.fixedDeltaTime;
         }
@@ -62,5 +64,15 @@ public class GhostAI : MonoBehaviour
         }
 
         transform.position = new Vector3(ghostPosition.x, ghostPosition.y + floatingPosition, ghostPosition.z);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        PlayerHealth healthScript = collision.gameObject.GetComponent<PlayerHealth>();
+
+        if (healthScript != null)
+        {
+            healthScript.dealDamage();
+        }
     }
 }
