@@ -910,7 +910,7 @@ MonoBehaviour:
   floatingAmplitude: 4
   floatingPeriod: 7
   player: {fileID: 0}
-  chaseSpeed: 2
+  chaseSpeed: 3
   returnSpeed: 1
   xChaseRange: 5
   yChaseRange: 2
