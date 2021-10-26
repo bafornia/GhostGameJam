@@ -421,6 +421,7 @@ GameObject:
   - component: {fileID: 1449046197}
   - component: {fileID: 1449046196}
   - component: {fileID: 1449046195}
+  - component: {fileID: 1449046198}
   - component: {fileID: 1449046194}
   - component: {fileID: 1449046193}
   - component: {fileID: 1449046192}
@@ -438,7 +439,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449046191}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b1d3726d835a441188b0d076db94506, type: 3}
   m_Name: 
@@ -584,6 +585,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1449046198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449046191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0dd272f2ea408140a6bb425b1b68ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1449046195}
+  maxSpeed: 5
+  playerFriction: 0.9
+  gravityScale: 0
+  maxJumpHeight: 10
+  jumpSpeed: 15
+  jumpBuffer: 0.3
+  coyoteTimeLength: 0.5
+  jumpOn:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1793218898
 GameObject:
   m_ObjectHideFlags: 0
