@@ -292,11 +292,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   deathDepth: -100
-  invincibilityFrames: 0.5
+  invincibilityFrames: 1
+  isInvicible: 0
   heartObject: {fileID: 1895206435046683717, guid: cbf83747518d846a2a8c1438aa6c9a5c, type: 3}
   heartWidth: 1
   heartPosition: {x: -15, y: 7.5, z: 0}
-  isInvicible: 0
 --- !u!1 &374200015
 GameObject:
   m_ObjectHideFlags: 0
