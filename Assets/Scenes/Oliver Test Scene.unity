@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75046e49111e44e8ad2c17851681bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lerpSpeed: 0.1
+  lerpSpeed: 0.2
   player: {fileID: 259910852}
 --- !u!20 &519420031
 Camera:

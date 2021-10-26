@@ -41,12 +41,18 @@ public class GhostAI : MonoBehaviour
     private void FixedUpdate()
     {
         // floating animation
+
         floatingAnimation += 50 * Time.fixedDeltaTime;
         floatingPosition = floatingAmplitude / 10 * Mathf.Sin(floatingPeriod / 100 * floatingAnimation);
 
         // chasing AI
-        if ((player.transform.position - transform.position).sqrMagnitude <= new Vector3(xChaseRange, yChaseRange, 0).sqrMagnitude
-            && (transform.position - sentryPosition).sqrMagnitude <= giveUpRange * giveUpRange)
+
+        float distanceToPlayer = (player.transform.position - ghostPosition).sqrMagnitude;
+        float chaseRange = new Vector3(xChaseRange, yChaseRange, 0).sqrMagnitude;
+        float distanceToSentry = (ghostPosition - sentryPosition).sqrMagnitude;
+        float playerToSentryDistance = (player.transform.position - sentryPosition).sqrMagnitude;
+
+        if (distanceToPlayer <= chaseRange && distanceToSentry <= giveUpRange * giveUpRange && playerToSentryDistance <= giveUpRange * giveUpRange)
         {
             ghostPosition += chaseSpeed * (player.transform.position - ghostPosition).normalized * Time.fixedDeltaTime;
         }
