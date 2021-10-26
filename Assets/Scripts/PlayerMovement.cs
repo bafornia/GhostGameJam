@@ -51,7 +51,9 @@ public class PlayerMovement : MonoBehaviour
         //the * 100 is just to make the number in the editor easier to work with
         //i figured it out here https://www.desmos.com/calculator/qsv0p4v5zg
 
+
         // left/right movement
+
 
         playerVelocity = (playerVelocity + Input.GetAxisRaw("Horizontal") * playerSpeed * Time.fixedDeltaTime) * playerFriction;
 
@@ -105,14 +107,13 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, 0.5f, 0), 0f, Vector2.down, 0.35f, jumpOn).collider != null;
+        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, myBoxCol.bounds.size.x * 0.5f, 0), 0f, Vector2.down, myBoxCol.bounds.size.x * 0.25f + 0.1f, jumpOn).collider != null;
         //i learned this method from this video https://www.youtube.com/watch?v=ptvK4Fp5vRY
-        //i adjusted the boxcast size in order to prevent the player from jumping off the sides of walls
     }
 
     private bool BumpedCeiling()
     {
-        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, 0.5f, 0), 0f, Vector2.up, 0.35f, jumpOn).collider != null;
+        return Physics2D.BoxCast(myBoxCol.bounds.center, myBoxCol.bounds.size - new Vector3(0.1f, myBoxCol.bounds.size.x * 0.5f, 0), 0f, Vector2.up, myBoxCol.bounds.size.x * 0.25f + 0.1f, jumpOn).collider != null;
     }
 
     int BoolToInt(bool i)
