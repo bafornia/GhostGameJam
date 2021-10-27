@@ -28,7 +28,9 @@ public class FlashlightAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(attackButton))
         {
-            tempFlash = Instantiate(flashObject, transform.position, transform.rotation);
+            float angle = Mathf.Rad2Deg * Mathf.Atan2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"));
+
+            tempFlash = Instantiate(flashObject, transform.position, Quaternion.AngleAxis(angle, transform.forward));
 
             Flash flashScript = tempFlash.gameObject.GetComponent<Flash>();
 

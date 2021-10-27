@@ -21,7 +21,6 @@ public class Flash : MonoBehaviour
         if (healthScript != null)
         {
             healthScript.DealDamage(flashDamage);
-
         }
     }
 }
