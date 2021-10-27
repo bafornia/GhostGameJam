@@ -9,7 +9,7 @@ public class PlayerAnimation : MonoBehaviour
     Animator _animator;
     //flips if facing left
     private SpriteRenderer _renderer;
-
+    KeyCode attackButton = KeyCode.E;
     void Start()
     {
         //making sure everything is there for animation
@@ -36,6 +36,10 @@ public class PlayerAnimation : MonoBehaviour
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             _renderer.flipX = true;
+        }
+        else if (Input.GetKeyDown(attackButton))
+        {
+            _animator.SetBool("On", true);
         }
         float move = Input.GetAxisRaw("Horizontal");
         _animator.SetFloat("Direction", move);
