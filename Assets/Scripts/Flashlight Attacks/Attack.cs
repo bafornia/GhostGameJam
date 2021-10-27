@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flash : MonoBehaviour
+public class Attack : MonoBehaviour
 {
     [HideInInspector]
-    public float flashDuration;
+    public float attackDuration;
     [HideInInspector]
-    public int flashDamage;
+    public int attackDamage;
 
     public void customStart()
     {
-        Destroy(gameObject, flashDuration);
+        Destroy(gameObject, attackDuration);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,7 +20,7 @@ public class Flash : MonoBehaviour
 
         if (healthScript != null)
         {
-            healthScript.DealDamage(flashDamage);
+            healthScript.DealDamage(attackDamage);
         }
     }
 }
