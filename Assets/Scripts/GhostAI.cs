@@ -17,9 +17,9 @@ public class GhostAI : MonoBehaviour
     [Tooltip("Speed of the ghost while returning to its sentry position.")]
     public float returnSpeed = 2;
     [Tooltip("Horizontal distance from which the ghost can see the player.")]
-    public float xChaseRange = 5;
+    public float xChaseRange = 10;
     [Tooltip("Vertical range from which the ghost can see the player.")]
-    public float yChaseRange = 3;
+    public float yChaseRange = 5;
     [Tooltip("How far the ghost will chase the player from its starting point before it gives up.")]
     public float giveUpRange = 10;
 
@@ -27,7 +27,7 @@ public class GhostAI : MonoBehaviour
     float floatingPosition;
     
     Vector3 sentryPosition, ghostPosition;
-
+     
     void Start()
     {
         if (player == null)
@@ -47,12 +47,14 @@ public class GhostAI : MonoBehaviour
 
         // chasing AI
 
-        float distanceToPlayer = (player.transform.position - ghostPosition).sqrMagnitude;
-        float chaseRange = new Vector3(xChaseRange, yChaseRange, 0).sqrMagnitude;
+        Vector3 distanceToPlayer = player.transform.position - ghostPosition;
         float distanceToSentry = (ghostPosition - sentryPosition).sqrMagnitude;
         float playerToSentryDistance = (player.transform.position - sentryPosition).sqrMagnitude;
 
-        if (distanceToPlayer <= chaseRange && distanceToSentry <= giveUpRange * giveUpRange && playerToSentryDistance <= giveUpRange * giveUpRange)
+        if (Mathf.Abs(distanceToPlayer.x) <= xChaseRange
+            && Mathf.Abs(distanceToPlayer.y) <= yChaseRange
+            && distanceToSentry <= giveUpRange * giveUpRange
+            && playerToSentryDistance <= giveUpRange * giveUpRange)
         {
             ghostPosition += chaseSpeed * (player.transform.position - ghostPosition).normalized * Time.fixedDeltaTime;
         }
@@ -62,5 +64,15 @@ public class GhostAI : MonoBehaviour
         }
 
         transform.position = new Vector3(ghostPosition.x, ghostPosition.y + floatingPosition, ghostPosition.z);
+    }
+     
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        PlayerHealth healthScript = collision.gameObject.GetComponent<PlayerHealth>();
+
+        if (healthScript != null)
+        {
+            healthScript.dealDamage();
+        }
     }
 }
