@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 259910853}
   - component: {fileID: 259910857}
   - component: {fileID: 259910858}
+  - component: {fileID: 259910859}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -297,6 +298,22 @@ MonoBehaviour:
   heartObject: {fileID: 1895206435046683717, guid: cbf83747518d846a2a8c1438aa6c9a5c, type: 3}
   heartWidth: 1
   heartPosition: {x: -15, y: 7.5, z: 0}
+--- !u!114 &259910859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259910852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6361ae70bb2b3449d876344c15dcac94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDamage: 1
+  flashDuration: 1
+  flashObject: {fileID: 3917533853415477997, guid: 3c9482f2ae53d46ada0a5d9b6358c033, type: 3}
+  attackButton: 101
 --- !u!1 &374200015
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +890,7 @@ GameObject:
   - component: {fileID: 2092261605}
   - component: {fileID: 2092261608}
   - component: {fileID: 2092261607}
+  - component: {fileID: 2092261609}
   m_Layer: 0
   m_Name: ghost
   m_TagString: Untagged
@@ -961,9 +979,9 @@ MonoBehaviour:
   floatingPeriod: 7
   player: {fileID: 0}
   chaseSpeed: 3
-  returnSpeed: 1
-  xChaseRange: 2
-  yChaseRange: 4
+  returnSpeed: 2
+  xChaseRange: 10
+  yChaseRange: 5
   giveUpRange: 10
 --- !u!61 &2092261608
 BoxCollider2D:
@@ -991,3 +1009,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2092261609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092261604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94bcbcf33d0a142d4aa582df80e46ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
