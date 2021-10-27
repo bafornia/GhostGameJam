@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveTest : MonoBehaviour
+public class AnimatedPlayerMove : MonoBehaviour
 {
     Rigidbody2D myRb;
     BoxCollider2D myBoxCol;
