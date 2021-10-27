@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: ba4b9439f1779ac44bebb9da216ff736
+guid: 0da2216096effa5408791512b0a3d291
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8797470166114955022
-    second: Flashlight_No_Beam_0
+      213: -2306417993717894177
+    second: Flashlight_Beam_On_0
   - first:
-      213: -2582343884610250343
-    second: Flashlight_No_Beam_1
+      213: -5475448326244029154
+    second: Flashlight_Beam_On_1
   - first:
-      213: 6650439543509023458
-    second: Flashlight_No_Beam_2
+      213: 2709459297722298279
+    second: Flashlight_Beam_On_2
   - first:
-      213: 8888201338667067808
-    second: Flashlight_No_Beam_3
+      213: 8530533773297990605
+    second: Flashlight_Beam_On_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flashlight_No_Beam_0
+      name: Flashlight_Beam_On_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,14 +129,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0fe06d4184e61a70800000000000000
-      internalID: 8797470166114955022
+      spriteID: fd330ecfd05fdffd0800000000000000
+      internalID: -2306417993717894177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flashlight_No_Beam_1
+      name: Flashlight_Beam_On_1
       rect:
         serializedVersion: 2
         x: 160
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99957e53beba92cd0800000000000000
-      internalID: -2582343884610250343
+      spriteID: e1da738e1cc4304b0800000000000000
+      internalID: -5475448326244029154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flashlight_No_Beam_2
+      name: Flashlight_Beam_On_2
       rect:
         serializedVersion: 2
         x: 320
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2eaf01f778b1b4c50800000000000000
-      internalID: 6650439543509023458
+      spriteID: 7afed1e30eee99520800000000000000
+      internalID: 2709459297722298279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flashlight_No_Beam_3
+      name: Flashlight_Beam_On_3
       rect:
         serializedVersion: 2
         x: 480
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a9e66b960c395b70800000000000000
-      internalID: 8888201338667067808
+      spriteID: dcb36e5254b826670800000000000000
+      internalID: 8530533773297990605
       vertices: []
       indices: 
       edges: []
