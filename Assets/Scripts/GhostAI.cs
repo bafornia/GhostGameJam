@@ -17,9 +17,9 @@ public class GhostAI : MonoBehaviour
     [Tooltip("Speed of the ghost while returning to its sentry position.")]
     public float returnSpeed = 2;
     [Tooltip("Horizontal distance from which the ghost can see the player.")]
-    public float xChaseRange = 5;
+    public float xChaseRange = 10;
     [Tooltip("Vertical range from which the ghost can see the player.")]
-    public float yChaseRange = 3;
+    public float yChaseRange = 5;
     [Tooltip("How far the ghost will chase the player from its starting point before it gives up.")]
     public float giveUpRange = 10;
 
@@ -27,7 +27,7 @@ public class GhostAI : MonoBehaviour
     float floatingPosition;
     
     Vector3 sentryPosition, ghostPosition;
-
+     
     void Start()
     {
         if (player == null)
@@ -51,8 +51,8 @@ public class GhostAI : MonoBehaviour
         float distanceToSentry = (ghostPosition - sentryPosition).sqrMagnitude;
         float playerToSentryDistance = (player.transform.position - sentryPosition).sqrMagnitude;
 
-        if (distanceToPlayer.x <= xChaseRange
-            && distanceToPlayer.y <= yChaseRange
+        if (Mathf.Abs(distanceToPlayer.x) <= xChaseRange
+            && Mathf.Abs(distanceToPlayer.y) <= yChaseRange
             && distanceToSentry <= giveUpRange * giveUpRange
             && playerToSentryDistance <= giveUpRange * giveUpRange)
         {
@@ -65,7 +65,7 @@ public class GhostAI : MonoBehaviour
 
         transform.position = new Vector3(ghostPosition.x, ghostPosition.y + floatingPosition, ghostPosition.z);
     }
-
+     
     private void OnTriggerStay2D(Collider2D collision)
     {
         PlayerHealth healthScript = collision.gameObject.GetComponent<PlayerHealth>();
