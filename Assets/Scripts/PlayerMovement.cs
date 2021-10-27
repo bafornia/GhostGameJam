@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             myRb.velocity = new Vector2(maxSpeed * 50 * Input.GetAxisRaw("Horizontal") * Time.fixedDeltaTime, myRb.velocity.y);
-            playerVelocity = maxSpeed;
+            playerVelocity = maxSpeed * Input.GetAxisRaw("Horizontal");
         }
         else
         {
