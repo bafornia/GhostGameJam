@@ -38,8 +38,22 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Layer of objects the player can jump on.")]
     public LayerMask jumpOn;
 
+    [Tooltip("Sound that plays when the player jumps.")]
+    public AudioClip jumpStartSound;
+    [Tooltip("Volume for jumpStartSound")]
+    public float jumpStartSoundVolume = 1;
+    [Tooltip("Sound that plays when the player lands.")]
+    public AudioClip jumpEndSound;
+    [Tooltip("Volume for jumpEndSound")]
+    public float jumpEndSoundVolume = 1;
+    AudioSource myAudio;
+
+    bool landingSoundPlayed = true;
+    public AudioSource[] sounds;
+
     void Start()
     {
+        myAudio = GetComponent<AudioSource>();
         myRb = GetComponent<Rigidbody2D>();
         myBoxCol = GetComponent<BoxCollider2D>();
     }
@@ -90,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
         if ((Input.GetKeyDown("space") && (IsGrounded() || coyoteTimeCounter <= coyoteTimeLength))
         || (jumpBufferCounter >= 0 && Input.GetKey("space") && IsGrounded() && myRb.velocity.y <= 0))
         {
+            myAudio.PlayOneShot(jumpStartSound, jumpStartSoundVolume);
             jumpHeightCounter = 1;
             coyoteTimeCounter = coyoteTimeLength;
         }
@@ -104,6 +119,16 @@ public class PlayerMovement : MonoBehaviour
             myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed);
 
             jumpHeightCounter += 50 * Time.deltaTime;
+        }
+
+        if (IsGrounded() && !landingSoundPlayed)
+        {
+            myAudio.PlayOneShot(jumpEndSound, jumpEndSoundVolume);
+            landingSoundPlayed = true;
+        }
+        else if (!IsGrounded())
+        {
+            landingSoundPlayed = false;
         }
     }
 
