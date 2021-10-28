@@ -8,6 +8,11 @@ public class FlashlightAttack : MonoBehaviour
     public int flashDamage = 1;
     [Tooltip("How long in seconds the flash appears on screen.")]
     public float flashDuration = 1;
+    [Tooltip("Time before the player can attack again.")]
+    public float attackBuffer = 0.1f;
+
+    float bufferTimer = 0;
+
     [Tooltip("The game object used for the flash attack.")]
     public GameObject flashObject;
 
@@ -32,6 +37,8 @@ public class FlashlightAttack : MonoBehaviour
 
     void Start()
     {
+        bufferTimer = attackBuffer;
+
         aimLockScript = GameObject.Find("player").gameObject.GetComponentInParent<PlayerMovement>();
 
         if (flashObject == null)
@@ -42,6 +49,7 @@ public class FlashlightAttack : MonoBehaviour
 
     void Update()
     {
+        bufferTimer += Time.deltaTime;
         chargeTimer += Time.deltaTime;
 
         if (Input.GetKeyDown(positionLock))
@@ -53,14 +61,14 @@ public class FlashlightAttack : MonoBehaviour
             aimLockScript.aimLock = false;
         }
 
-        if (Input.GetKeyDown(attackButton))
+        if (Input.GetKeyDown(attackButton) && bufferTimer >= attackBuffer)
         {
             chargeTimer = 0;
         }
 
         lastxInput -= BoolToInt(Input.GetAxisRaw("Horizontal") != 0) * (lastxInput - Input.GetAxisRaw("Horizontal"));
 
-        if (Input.GetKeyUp(attackButton))
+        if (Input.GetKeyUp(attackButton) && bufferTimer >= attackBuffer)
         {
             Quaternion angle = Quaternion.AngleAxis(Mathf.Rad2Deg *
                                Mathf.Atan2(Input.GetAxisRaw("Vertical"), lastxInput), transform.forward);
@@ -71,10 +79,13 @@ public class FlashlightAttack : MonoBehaviour
 
                 Attack attackScript = attackObject.gameObject.GetComponent<Attack>();
 
+                attackScript.playerObject = gameObject;
                 attackScript.attackDuration = beamDuration;
                 attackScript.attackDamage = beamDamage;
 
                 attackScript.customStart();
+
+                bufferTimer = 0 - beamDuration;
             }
             else // flash attack
             {
@@ -82,10 +93,13 @@ public class FlashlightAttack : MonoBehaviour
 
                 Attack attackScript = attackObject.gameObject.GetComponent<Attack>();
 
+                attackScript.playerObject = gameObject;
                 attackScript.attackDuration = flashDuration;
                 attackScript.attackDamage = flashDamage;
 
                 attackScript.customStart();
+
+                bufferTimer = 0 - flashDuration;
             }
         }
     }

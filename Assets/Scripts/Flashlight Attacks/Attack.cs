@@ -9,15 +9,18 @@ public class Attack : MonoBehaviour
     [HideInInspector]
     public int attackDamage;
 
-    GameObject playerObject;
-    Transform playerTransform;
+    public GameObject playerObject;
 
     public void customStart()
     {
+<<<<<<< Updated upstream
         playerObject = GameObject.Find("player").gameObject;
         playerTransform = playerObject.transform;
 
         StartCoroutine(Death());
+=======
+        StartCoroutine(death());
+>>>>>>> Stashed changes
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,7 +35,7 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        transform.position = playerTransform.position;
+        transform.position = playerObject.transform.position;
     }
 
     IEnumerator Death()
