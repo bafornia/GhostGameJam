@@ -388,11 +388,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   deathDepth: -100
+  restartKey: 114
   invincibilityFrames: 1
   isInvicible: 0
   heartObject: {fileID: 1895206435046683717, guid: cbf83747518d846a2a8c1438aa6c9a5c, type: 3}
   heartWidth: 1
   heartPosition: {x: -15, y: 7.5, z: 0}
+--- !u!114 &508123995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508123992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ebfce8a560847ccbbb0cd5e7a82ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDuration: 0
+  attackDamage: 0
+--- !u!114 &508123996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508123992}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6361ae70bb2b3449d876344c15dcac94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDamage: 1
+  flashDuration: 1
+  flashObject: {fileID: 0}
+  beamDamage: 3
+  chargeTime: 0.5
+  beamDuration: 1
+  beamObject: {fileID: 0}
+  attackButton: 101
 --- !u!95 &508123997 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6767420705484315828, guid: dcb295a43faa87a4cae055965ab3d40a, type: 3}
@@ -530,6 +565,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9000660726816127804, guid: 86d6c309622593046bc9ede9e6cfee18, type: 3}
   m_PrefabInstance: {fileID: 9000660725507871179}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1086042082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086042081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b993002913511419e358abd4f906d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1086042083}
 --- !u!95 &1086042083 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5534811818542155339, guid: 86d6c309622593046bc9ede9e6cfee18, type: 3}
@@ -556,19 +604,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1086042085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086042081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 957687dcbc59146b2bee0778e803f650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 1086042083}
 --- !u!61 &1086042086
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -616,7 +651,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086042081}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6361ae70bb2b3449d876344c15dcac94, type: 3}
   m_Name: 
@@ -627,7 +662,7 @@ MonoBehaviour:
   beamDamage: 3
   chargeTime: 0.5
   beamDuration: 1
-  beamObject: {fileID: 0}
+  beamObject: {fileID: 3917533853415477997, guid: 3c9482f2ae53d46ada0a5d9b6358c033, type: 3}
   attackButton: 101
 --- !u!1 &1193665716
 GameObject:
