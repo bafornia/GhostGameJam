@@ -10,7 +10,7 @@ public class PlayerAnimation : MonoBehaviour
     //flips if facing left
     private SpriteRenderer _renderer;
     KeyCode attackButton = KeyCode.E;
-    void Start()
+    private void Start()
     {
         //making sure everything is there for animation
         _animator = GetComponent<Animator>();
@@ -26,8 +26,9 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
-    void Update()
-    {
+
+    private void Update()
+    {   
         //animator stuff
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
@@ -43,5 +44,7 @@ public class PlayerAnimation : MonoBehaviour
         }
         float move = Input.GetAxisRaw("Horizontal");
         _animator.SetFloat("Direction", move);
+        
     }
+
 }

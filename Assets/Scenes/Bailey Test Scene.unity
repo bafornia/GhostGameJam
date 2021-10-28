@@ -607,8 +607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ebfce8a560847ccbbb0cd5e7a82ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashDuration: 0
-  flashDamage: 0
+  attackDuration: 0
+  attackDamage: 0
 --- !u!114 &1086042088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,7 +616,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086042081}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6361ae70bb2b3449d876344c15dcac94, type: 3}
   m_Name: 
@@ -624,6 +624,10 @@ MonoBehaviour:
   flashDamage: 1
   flashDuration: 1
   flashObject: {fileID: 3917533853415477997, guid: 3c9482f2ae53d46ada0a5d9b6358c033, type: 3}
+  beamDamage: 3
+  chargeTime: 0.5
+  beamDuration: 1
+  beamObject: {fileID: 0}
   attackButton: 101
 --- !u!1 &1193665716
 GameObject:
@@ -1493,7 +1497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6767420705484315831, guid: dcb295a43faa87a4cae055965ab3d40a, type: 3}
       propertyPath: jumpOn.m_Bits
-      value: 4294967295
+      value: 512
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6767420705484315825, guid: dcb295a43faa87a4cae055965ab3d40a, type: 3}
