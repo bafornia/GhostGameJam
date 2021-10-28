@@ -9,9 +9,15 @@ public class Attack : MonoBehaviour
     [HideInInspector]
     public int attackDamage;
 
+    GameObject playerObject;
+    Transform playerTransform;
+
     public void customStart()
     {
-        Destroy(gameObject, attackDuration);
+        playerObject = GameObject.Find("player").gameObject;
+        playerTransform = playerObject.transform;
+
+        StartCoroutine(death());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,5 +28,23 @@ public class Attack : MonoBehaviour
         {
             healthScript.DealDamage(attackDamage);
         }
+    }
+
+    private void Update()
+    {
+        transform.position = playerTransform.position;
+    }
+
+    IEnumerator death()
+    {
+        PlayerMovement playerMovement = playerObject.GetComponent<PlayerMovement>();
+
+        playerMovement.lockPlayerMovement = true;
+
+        yield return new WaitForSeconds(attackDuration);
+
+        playerMovement.lockPlayerMovement = false;
+
+        Destroy(gameObject);
     }
 }
