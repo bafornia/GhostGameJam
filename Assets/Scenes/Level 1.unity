@@ -2019,8 +2019,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 10
   playerFriction: 0.9
+  lockPlayerMovement: 0
+  aimLock: 0
   gravityScale: 5
-  maxJumpHeight: 20
+  maxJumpHeight: 25
   jumpSpeed: 15
   jumpPrecision: 3
   jumpBuffer: 0.3
@@ -2028,6 +2030,9 @@ MonoBehaviour:
   jumpOn:
     serializedVersion: 2
     m_Bits: 512
+  jumpStartSound: {fileID: 0}
+  jumpEndSound: {fileID: 0}
+  sounds: []
 --- !u!1 &1369594059
 GameObject:
   m_ObjectHideFlags: 0
