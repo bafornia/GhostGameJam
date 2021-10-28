@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxJumpHeight = 10;
     [Tooltip("How quickly the player jumps")]
     public float jumpSpeed = 15;
+    [Tooltip("How precise the player's jump is.")]
+    public float jumpPrecision = 3;
     [Tooltip("Amount of time the player has before they land to press space and still jump instantly.")]
     public float jumpBuffer = 0.3f;
 
@@ -94,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpHeightCounter != 0 && (jumpHeightCounter >= maxJumpHeight || !Input.GetKey("space") || BumpedCeiling()))
         {
-            myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed / 5);
+            myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed / jumpPrecision);
             jumpHeightCounter = 0;
         }
         else if (Input.GetKey("space") && jumpHeightCounter != 0)

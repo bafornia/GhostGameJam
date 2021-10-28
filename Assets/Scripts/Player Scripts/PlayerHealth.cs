@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class PlayerHealth : MonoBehaviour
     public int health = 5;
     [Tooltip("The y value at which the player will instantly die.")]
     public float deathDepth = -100;
+
+    [Tooltip("Key the player presses to restart.")]
+    public KeyCode restartKey = KeyCode.R;
 
     [Tooltip("How many seconds the player is invincible after getting hit.")]
     public float invincibilityFrames = 1;
@@ -39,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
         healthUI.transform.position = new Vector3(heartPosition.x + heartWidth * (health - 1) / 2.0f, heartPosition.y, heartPosition.z)
                                     + new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
 
-        if(health <= 0 || transform.position.y <= deathDepth)
+        if(health <= 0 || transform.position.y <= deathDepth || Input.GetKey(restartKey))
         {
             death();
         }
@@ -47,7 +51,7 @@ public class PlayerHealth : MonoBehaviour
 
     void death()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void dealDamage()
