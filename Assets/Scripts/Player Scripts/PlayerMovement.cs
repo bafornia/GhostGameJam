@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     public float playerFriction = 0.9f;
     float playerVelocity = 0;
 
+    [HideInInspector]
+    public bool lockPlayerMovement = false;
+    [HideInInspector]
+    public bool aimLock = false;
+
     // jumping
 
     [Tooltip("Same as the rigidbody gravity scale, just manipulatable here for convenience." + "Leave at zero to not change it from what is set in the rigidbody component.")]
@@ -38,8 +43,18 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Layer of objects the player can jump on.")]
     public LayerMask jumpOn;
 
+    [Tooltip("Sound that plays when the player jumps.")]
+    public AudioClip jumpStartSound;
+    [Tooltip("Sound that plays when the player lands.")]
+    public AudioClip jumpEndSound;
+    AudioSource myAudio;
+
+    bool landingSoundPlayed = true;
+    public AudioSource[] sounds;
+
     void Start()
     {
+        myAudio = GetComponent<AudioSource>();
         myRb = GetComponent<Rigidbody2D>();
         myBoxCol = GetComponent<BoxCollider2D>();
     }
@@ -57,9 +72,12 @@ public class PlayerMovement : MonoBehaviour
         // left/right movement
 
 
-        playerVelocity = (playerVelocity + Input.GetAxisRaw("Horizontal") * playerSpeed * Time.fixedDeltaTime) * playerFriction;
+        playerVelocity = (playerVelocity + BoolToInt(!lockPlayerMovement && !aimLock)
+                        * Input.GetAxisRaw("Horizontal") * playerSpeed * Time.fixedDeltaTime) * playerFriction;
 
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        if (Input.GetAxisRaw("Horizontal") != 0
+            && lockPlayerMovement == false
+            && aimLock == false)
         {
             myRb.velocity = new Vector2(maxSpeed * 50 * Input.GetAxisRaw("Horizontal") * Time.fixedDeltaTime, myRb.velocity.y);
             playerVelocity = maxSpeed * Input.GetAxisRaw("Horizontal");
@@ -87,23 +105,37 @@ public class PlayerMovement : MonoBehaviour
         //resets counter if grounded or space key is pressed
         jumpBufferCounter -= (jumpBufferCounter - jumpBuffer) * BoolToInt(Input.GetKeyDown("space") && !IsGrounded());
 
-        if ((Input.GetKeyDown("space") && (IsGrounded() || coyoteTimeCounter <= coyoteTimeLength))
-        || (jumpBufferCounter >= 0 && Input.GetKey("space") && IsGrounded() && myRb.velocity.y <= 0))
+        if (lockPlayerMovement == false)
         {
-            jumpHeightCounter = 1;
-            coyoteTimeCounter = coyoteTimeLength;
-        }
+            if ((Input.GetKeyDown("space") && (IsGrounded() || coyoteTimeCounter <= coyoteTimeLength))
+            || (jumpBufferCounter >= 0 && Input.GetKey("space") && IsGrounded() && myRb.velocity.y <= 0))
+            {
+                myAudio.PlayOneShot(jumpStartSound);
+                jumpHeightCounter = 1;
+                coyoteTimeCounter = coyoteTimeLength;
+            }
 
-        if (jumpHeightCounter != 0 && (jumpHeightCounter >= maxJumpHeight || !Input.GetKey("space") || BumpedCeiling()))
-        {
-            myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed / jumpPrecision);
-            jumpHeightCounter = 0;
-        }
-        else if (Input.GetKey("space") && jumpHeightCounter != 0)
-        {
-            myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed);
+            if (jumpHeightCounter != 0 && (jumpHeightCounter >= maxJumpHeight || !Input.GetKey("space") || BumpedCeiling()))
+            {
+                myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed / jumpPrecision);
+                jumpHeightCounter = 0;
+            }
+            else if (Input.GetKey("space") && jumpHeightCounter != 0)
+            {
+                myRb.velocity = new Vector2(myRb.velocity.x, jumpSpeed);
 
-            jumpHeightCounter += 50 * Time.deltaTime;
+                jumpHeightCounter += 50 * Time.deltaTime;
+            }
+
+            if (IsGrounded() && !landingSoundPlayed)
+            {
+                myAudio.PlayOneShot(jumpEndSound);
+                landingSoundPlayed = true;
+            }
+            else if (!IsGrounded())
+            {
+                landingSoundPlayed = false;
+            }
         }
     }
 

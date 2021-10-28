@@ -24,9 +24,16 @@ public class FlashlightAttack : MonoBehaviour
     GameObject attackObject;
 
     public KeyCode attackButton = KeyCode.E;
+    public KeyCode positionLock = KeyCode.LeftShift;
+
+    PlayerMovement aimLockScript;
+
+    float lastxInput = 0;
 
     void Start()
     {
+        aimLockScript = GameObject.Find("player").gameObject.GetComponentInParent<PlayerMovement>();
+
         if (flashObject == null)
         {
             Debug.LogError("Flashlight attack is missing the flash game object");
@@ -37,15 +44,26 @@ public class FlashlightAttack : MonoBehaviour
     {
         chargeTimer += Time.deltaTime;
 
+        if (Input.GetKeyDown(positionLock))
+        {
+            aimLockScript.aimLock = true;
+        }
+        else if (Input.GetKeyUp(positionLock))
+        {
+            aimLockScript.aimLock = false;
+        }
+
         if (Input.GetKeyDown(attackButton))
         {
             chargeTimer = 0;
         }
 
+        lastxInput -= BoolToInt(Input.GetAxisRaw("Horizontal") != 0) * (lastxInput - Input.GetAxisRaw("Horizontal"));
+
         if (Input.GetKeyUp(attackButton))
         {
             Quaternion angle = Quaternion.AngleAxis(Mathf.Rad2Deg *
-                               Mathf.Atan2(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal")), transform.forward);
+                               Mathf.Atan2(Input.GetAxisRaw("Vertical"), lastxInput), transform.forward);
 
             if (chargeTimer >= chargeTime)  // beam attack
             {
@@ -70,5 +88,10 @@ public class FlashlightAttack : MonoBehaviour
                 attackScript.customStart();
             }
         }
+    }
+
+    int BoolToInt(bool i)
+    {
+        return System.Convert.ToInt32(i);
     }
 }

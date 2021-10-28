@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimation : MonoBehaviour
+public class AnimationsFlash : MonoBehaviour
 {
     //animator
     [SerializeField]
     Animator _animator;
     //flips if facing left
     private SpriteRenderer _renderer;
+    KeyCode attackButton = KeyCode.E;
+    public float IdleTimer = 0.3f;
+    //bool On = false;
     private void Start()
     {
         //making sure everything is there for animation
@@ -27,8 +30,8 @@ public class PlayerAnimation : MonoBehaviour
 
 
     private void Update()
-    {   
-        //animator stuff
+    {
+        //checks if flashlight needs to be flipped
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             _renderer.flipX = false;
@@ -37,9 +40,32 @@ public class PlayerAnimation : MonoBehaviour
         {
             _renderer.flipX = true;
         }
-        float move = Input.GetAxisRaw("Horizontal");
-        _animator.SetFloat("Direction", move);
-        
+        //checks if flashlight needs to be turned on
+        else if (Input.GetKeyDown(attackButton))
+        {
+           _animator.SetBool("On", true);  
+        }
+        //turns off flashlight shortly after attack button is released
+        else if (Input.GetKeyUp(attackButton))
+        {
+            StartCoroutine(Idle());
+        }
+        //starts and stops idling
+        //float move = Input.GetAxisRaw("Horizontal");
+        if (Input.GetAxisRaw("Horizontal") != 0 )
+        {
+            _animator.SetBool("Idling", false);
+        }
+        else
+        {
+            _animator.SetBool("Idling", true);
+        }
+
+    }
+    IEnumerator Idle()
+    {
+        yield return new WaitForSeconds(IdleTimer);
+        _animator.SetBool("On", false);
     }
 
 }

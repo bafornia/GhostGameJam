@@ -18,6 +18,12 @@ public class PlayerHealth : MonoBehaviour
     [HideInInspector]
     public bool isInvicible = false;
 
+    [Tooltip("Sound made when the player dies or restarts.")]
+    public AudioClip deathSound;
+    [Tooltip("Sound made when the player takes damage.")]
+    public AudioClip hurtSound;
+    AudioSource myAudio;
+
     [Tooltip("Prefab that will be used to make the hearts.")]
     public GameObject heartObject;
     [Tooltip("The width of the heart sprite, needed to calculate the position of the hearts")]
@@ -30,6 +36,9 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+        print(deathSound.length);
+        myAudio = GetComponent<AudioSource>();
+
         healthUI = Instantiate(heartObject, heartPosition, transform.rotation);
 
         heartRenderer = healthUI.GetComponent<SpriteRenderer>();
@@ -43,25 +52,36 @@ public class PlayerHealth : MonoBehaviour
         healthUI.transform.position = new Vector3(heartPosition.x + heartWidth * (health - 1) / 2.0f, heartPosition.y, heartPosition.z)
                                     + new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
 
-        if(health <= 0 || transform.position.y <= deathDepth || Input.GetKey(restartKey))
+        if ((health <= 0
+         || transform.position.y <= deathDepth
+         || Input.GetKey(restartKey))
+         && isDying == false)
         {
-            death();
+            StartCoroutine(death());
+            isDying = true;
         }
     }
 
-    void death()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    bool isDying = false;
 
     public void dealDamage()
     {
         if (isInvicible == false)
         {
             isInvicible = true;
+            myAudio.PlayOneShot(hurtSound);
             health--;
             StartCoroutine(invincible());
         }
+    }
+
+    IEnumerator death()
+    {
+        myAudio.PlayOneShot(deathSound);
+
+        yield return new WaitForSeconds(deathSound.length + 0.1f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     IEnumerator invincible()
