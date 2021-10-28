@@ -36,7 +36,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        print(deathSound.length);
         myAudio = GetComponent<AudioSource>();
 
         healthUI = Instantiate(heartObject, heartPosition, transform.rotation);

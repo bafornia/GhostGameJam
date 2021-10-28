@@ -13,14 +13,7 @@ public class Attack : MonoBehaviour
 
     public void customStart()
     {
-<<<<<<< Updated upstream
-        playerObject = GameObject.Find("player").gameObject;
-        playerTransform = playerObject.transform;
-
         StartCoroutine(Death());
-=======
-        StartCoroutine(death());
->>>>>>> Stashed changes
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
