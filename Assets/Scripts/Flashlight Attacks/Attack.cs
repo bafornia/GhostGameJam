@@ -17,7 +17,7 @@ public class Attack : MonoBehaviour
         playerObject = GameObject.Find("player").gameObject;
         playerTransform = playerObject.transform;
 
-        StartCoroutine(death());
+        StartCoroutine(Death());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,7 +35,7 @@ public class Attack : MonoBehaviour
         transform.position = playerTransform.position;
     }
 
-    IEnumerator death()
+    IEnumerator Death()
     {
         PlayerMovement playerMovement = playerObject.GetComponent<PlayerMovement>();
 
