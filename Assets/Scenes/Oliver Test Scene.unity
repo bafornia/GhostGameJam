@@ -284,9 +284,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   jumpStartSound: {fileID: 8300000, guid: 492413576823640f7a67ca8b7a280d9e, type: 3}
-  jumpStartSoundVolume: 1
   jumpEndSound: {fileID: 8300000, guid: df35aa7c0f4844a17a294526218b36d8, type: 3}
-  jumpEndSoundVolume: 1
   sounds: []
 --- !u!114 &259910858
 MonoBehaviour:
@@ -306,7 +304,7 @@ MonoBehaviour:
   invincibilityFrames: 1
   isInvicible: 0
   deathSound: {fileID: 8300000, guid: 33285974e8e2b47439de54df78113ff5, type: 3}
-  deathVolume: 1
+  hurtSound: {fileID: 8300000, guid: d707dedb6a26543c1b1cd0aca3cc4736, type: 3}
   heartObject: {fileID: 1895206435046683717, guid: cbf83747518d846a2a8c1438aa6c9a5c, type: 3}
   heartWidth: 1
   heartPosition: {x: -15, y: 7.5, z: 0}

@@ -20,9 +20,9 @@ public class PlayerHealth : MonoBehaviour
 
     [Tooltip("Sound made when the player dies or restarts.")]
     public AudioClip deathSound;
+    [Tooltip("Sound made when the player takes damage.")]
+    public AudioClip hurtSound;
     AudioSource myAudio;
-    [Tooltip("Volume of the death sound effect.")]
-    public float deathVolume = 1;
 
     [Tooltip("Prefab that will be used to make the hearts.")]
     public GameObject heartObject;
@@ -69,6 +69,7 @@ public class PlayerHealth : MonoBehaviour
         if (isInvicible == false)
         {
             isInvicible = true;
+            myAudio.PlayOneShot(hurtSound);
             health--;
             StartCoroutine(invincible());
         }
@@ -76,7 +77,7 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator death()
     {
-        myAudio.PlayOneShot(deathSound, deathVolume);
+        myAudio.PlayOneShot(deathSound);
 
         yield return new WaitForSeconds(deathSound.length + 0.1f);
 

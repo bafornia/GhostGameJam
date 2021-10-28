@@ -45,12 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("Sound that plays when the player jumps.")]
     public AudioClip jumpStartSound;
-    [Tooltip("Volume for jumpStartSound")]
-    public float jumpStartSoundVolume = 1;
     [Tooltip("Sound that plays when the player lands.")]
     public AudioClip jumpEndSound;
-    [Tooltip("Volume for jumpEndSound")]
-    public float jumpEndSoundVolume = 1;
     AudioSource myAudio;
 
     bool landingSoundPlayed = true;
@@ -114,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
             if ((Input.GetKeyDown("space") && (IsGrounded() || coyoteTimeCounter <= coyoteTimeLength))
             || (jumpBufferCounter >= 0 && Input.GetKey("space") && IsGrounded() && myRb.velocity.y <= 0))
             {
-                myAudio.PlayOneShot(jumpStartSound, jumpStartSoundVolume);
+                myAudio.PlayOneShot(jumpStartSound);
                 jumpHeightCounter = 1;
                 coyoteTimeCounter = coyoteTimeLength;
             }
@@ -133,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (IsGrounded() && !landingSoundPlayed)
             {
-                myAudio.PlayOneShot(jumpEndSound, jumpEndSoundVolume);
+                myAudio.PlayOneShot(jumpEndSound);
                 landingSoundPlayed = true;
             }
             else if (!IsGrounded())
