@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6767420705484315826}
   - component: {fileID: 6767420705484315827}
   - component: {fileID: 6767420705484315828}
-  - component: {fileID: 6767420705484315825}
   - component: {fileID: 6767420705484315829}
   - component: {fileID: 6767420705484315830}
   - component: {fileID: 6767420705484315831}
+  - component: {fileID: 2623126070856583532}
   m_Layer: 0
   m_Name: Player_Chara
   m_TagString: Untagged
@@ -106,29 +106,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6767420705484315825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6767420705484315816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0dd272f2ea408140a6bb425b1b68ce3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 6767420705484315828}
-  maxSpeed: 5
-  playerFriction: 0.9
-  gravityScale: 0
-  maxJumpHeight: 10
-  jumpSpeed: 15
-  jumpBuffer: 0.3
-  coyoteTimeLength: 0.5
-  jumpOn:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!50 &6767420705484315829
 Rigidbody2D:
   serializedVersion: 4
@@ -183,18 +160,48 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6767420705484315816}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b1d3726d835a441188b0d076db94506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
   playerFriction: 0.9
+  lockPlayerMovement: 0
+  aimLock: 0
   gravityScale: 0
   maxJumpHeight: 10
   jumpSpeed: 15
+  jumpPrecision: 3
   jumpBuffer: 0.3
   coyoteTimeLength: 0.5
   jumpOn:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 512
+  jumpStartSound: {fileID: 8300000, guid: 492413576823640f7a67ca8b7a280d9e, type: 3}
+  jumpStartSoundVolume: 1
+  jumpEndSound: {fileID: 8300000, guid: df35aa7c0f4844a17a294526218b36d8, type: 3}
+  jumpEndSoundVolume: 1
+  sounds: []
+--- !u!114 &2623126070856583532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6767420705484315816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413664b45da43438cb15ad2d123c18bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  deathDepth: -100
+  restartKey: 114
+  invincibilityFrames: 1
+  isInvicible: 0
+  deathSound: {fileID: 8300000, guid: d707dedb6a26543c1b1cd0aca3cc4736, type: 3}
+  deathVolume: 1
+  heartObject: {fileID: 1895206435046683717, guid: cbf83747518d846a2a8c1438aa6c9a5c, type: 3}
+  heartWidth: 1
+  heartPosition: {x: -15, y: 7.5, z: 0}

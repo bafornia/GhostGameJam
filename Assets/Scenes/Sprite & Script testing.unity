@@ -315,14 +315,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 10
   playerFriction: 0.1
+  lockPlayerMovement: 0
+  aimLock: 0
   gravityScale: 5
   maxJumpHeight: 16
   jumpSpeed: 15
+  jumpPrecision: 3
   jumpBuffer: 0.2
   coyoteTimeLength: 0.1
   jumpOn:
     serializedVersion: 2
     m_Bits: 512
+  jumpStartSound: {fileID: 0}
+  jumpStartSoundVolume: 1
+  jumpEndSound: {fileID: 0}
+  jumpEndSoundVolume: 1
+  sounds: []
 --- !u!95 &259910858
 Animator:
   serializedVersion: 3
@@ -351,20 +359,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 259910852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0dd272f2ea408140a6bb425b1b68ce3, type: 3}
+  m_Script: {fileID: 11500000, guid: 957687dcbc59146b2bee0778e803f650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 259910858}
-  maxSpeed: 5
-  playerFriction: 0.9
-  gravityScale: 0
-  maxJumpHeight: 10
-  jumpSpeed: 15
-  jumpBuffer: 0.3
-  coyoteTimeLength: 0.5
-  jumpOn:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &424406887
 GameObject:
   m_ObjectHideFlags: 0
