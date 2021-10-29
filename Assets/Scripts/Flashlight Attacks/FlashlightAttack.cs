@@ -4,28 +4,33 @@ using UnityEngine;
 
 public class FlashlightAttack : MonoBehaviour
 {
+
+    [Tooltip("Time before the player can attack again.")]
+    public float attackBuffer = 0.1f;
+    float bufferTimer = 0;
+
     [Tooltip("How much damage the AOE flash attack does.")]
     public int flashDamage = 1;
     [Tooltip("How long in seconds the flash appears on screen.")]
     public float flashDuration = 1;
-    [Tooltip("Time before the player can attack again.")]
-    public float attackBuffer = 0.1f;
-
-    float bufferTimer = 0;
-
     [Tooltip("The game object used for the flash attack.")]
     public GameObject flashObject;
+    [Tooltip("Sound used for the flash attack.")]
+    public AudioClip flashSound;
 
-    [Tooltip("How much damage the powerful beam attack does.")]
+    [Tooltip("How much damage the beam attack does.")]
     public int beamDamage = 3;
-    [Tooltip("How logn it takes to charge the beam attack.")]
-    public float chargeTime = 0.5f;
     [Tooltip("How long in seconds the beam appears on screen.")]
     public float beamDuration = 1;
     [Tooltip("The game object used for the beam attack.")]
     public GameObject beamObject;
+    [Tooltip("Sound used for the beam attack.")]
+    public AudioClip beamSound;
+    [Tooltip("How long it takes to charge the beam attack.")]
+    public float chargeTime = 0.5f;
     float chargeTimer = 0;
 
+    AudioSource myAudio;
     GameObject attackObject;
 
     public KeyCode attackButton = KeyCode.E;
@@ -40,6 +45,8 @@ public class FlashlightAttack : MonoBehaviour
         bufferTimer = attackBuffer;
 
         aimLockScript = GameObject.Find("player").gameObject.GetComponentInParent<PlayerMovement>();
+
+        myAudio = GetComponent<AudioSource>();
 
         if (flashObject == null)
         {
@@ -75,6 +82,8 @@ public class FlashlightAttack : MonoBehaviour
 
             if (chargeTimer >= chargeTime)  // beam attack
             {
+                myAudio.PlayOneShot(beamSound);
+
                 attackObject = Instantiate(beamObject, transform.position, angle);
 
                 Attack attackScript = attackObject.gameObject.GetComponent<Attack>();
@@ -89,6 +98,8 @@ public class FlashlightAttack : MonoBehaviour
             }
             else // flash attack
             {
+                myAudio.PlayOneShot(flashSound);
+
                 attackObject = Instantiate(flashObject, transform.position, angle);
 
                 Attack attackScript = attackObject.gameObject.GetComponent<Attack>();
