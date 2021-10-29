@@ -14111,7 +14111,7 @@ MonoBehaviour:
     m_Bits: 512
   jumpStartSound: {fileID: 8300000, guid: 492413576823640f7a67ca8b7a280d9e, type: 3}
   jumpEndSound: {fileID: 8300000, guid: df35aa7c0f4844a17a294526218b36d8, type: 3}
-  runningSoundManager: {fileID: 0}
+  runningSoundManager: {fileID: 774720557}
 --- !u!61 &2080462209
 BoxCollider2D:
   m_ObjectHideFlags: 0
