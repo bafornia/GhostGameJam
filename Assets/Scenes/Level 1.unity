@@ -163,6 +163,8 @@ MonoBehaviour:
   xChaseRange: 2
   yChaseRange: 4
   giveUpRange: 10
+  spookySound: {fileID: 8300000, guid: cb36f9ecf2b39485cbb7a89185352317, type: 3}
+  spookySoundDistance: 0
 --- !u!61 &119613800
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1495,6 +1497,8 @@ MonoBehaviour:
   xChaseRange: 2
   yChaseRange: 4
   giveUpRange: 10
+  spookySound: {fileID: 8300000, guid: cb36f9ecf2b39485cbb7a89185352317, type: 3}
+  spookySoundDistance: 0
 --- !u!61 &743114354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1599,6 +1603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
+  hurtSound: {fileID: 0}
 --- !u!50 &743114358
 Rigidbody2D:
   serializedVersion: 4
@@ -1661,6 +1666,8 @@ MonoBehaviour:
   xChaseRange: 2
   yChaseRange: 4
   giveUpRange: 10
+  spookySound: {fileID: 8300000, guid: cb36f9ecf2b39485cbb7a89185352317, type: 3}
+  spookySoundDistance: 0
 --- !u!61 &800152638
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1765,6 +1772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
+  hurtSound: {fileID: 0}
 --- !u!50 &800152642
 Rigidbody2D:
   serializedVersion: 4
@@ -1827,6 +1835,8 @@ MonoBehaviour:
   xChaseRange: 2
   yChaseRange: 4
   giveUpRange: 10
+  spookySound: {fileID: 8300000, guid: cb36f9ecf2b39485cbb7a89185352317, type: 3}
+  spookySoundDistance: 0
 --- !u!61 &1014580502
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1931,6 +1941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
+  hurtSound: {fileID: 0}
 --- !u!50 &1014580506
 Rigidbody2D:
   serializedVersion: 4
@@ -2620,7 +2631,6 @@ MonoBehaviour:
     m_Bits: 512
   jumpStartSound: {fileID: 8300000, guid: 492413576823640f7a67ca8b7a280d9e, type: 3}
   jumpEndSound: {fileID: 8300000, guid: df35aa7c0f4844a17a294526218b36d8, type: 3}
-  sounds: []
   runningSoundManager: {fileID: 0}
 --- !u!61 &1829177230
 BoxCollider2D:

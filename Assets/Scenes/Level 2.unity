@@ -1863,7 +1863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingAmplitude: 4
   floatingPeriod: 7
-  player: {fileID: 0}
+  player: {fileID: 2080462202}
   chaseSpeed: 3
   returnSpeed: 1
   xChaseRange: 2
@@ -2083,7 +2083,7 @@ GameObject:
   - component: {fileID: 1244135699}
   - component: {fileID: 1244135698}
   - component: {fileID: 1244135700}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Platform/Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2145,7 +2145,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.16666669, y: 0.16666669, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
