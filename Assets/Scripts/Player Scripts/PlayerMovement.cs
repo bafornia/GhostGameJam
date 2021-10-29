@@ -50,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
     AudioSource myAudio;
 
     bool landingSoundPlayed = true;
-    public AudioSource[] sounds;
 
     [Tooltip("Game object with an audiosource containing the running sound set to loop.")]
     public GameObject runningSoundManager;
@@ -96,7 +95,10 @@ public class PlayerMovement : MonoBehaviour
         {
             myRb.velocity = new Vector2(maxSpeed * 50 * Input.GetAxisRaw("Horizontal") * Time.fixedDeltaTime, myRb.velocity.y);
             playerVelocity = maxSpeed * Input.GetAxisRaw("Horizontal");
-            runningSound.Play();
+            if (!runningSound.isPlaying)
+            {
+                runningSound.Play();
+            }
         }
         else
         {
