@@ -1863,7 +1863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingAmplitude: 4
   floatingPeriod: 7
-  player: {fileID: 0}
+  player: {fileID: 2080462202}
   chaseSpeed: 3
   returnSpeed: 1
   xChaseRange: 2
