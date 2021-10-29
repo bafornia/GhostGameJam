@@ -386,13 +386,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6361ae70bb2b3449d876344c15dcac94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackBuffer: 0.1
+  doLocking: 1
   flashDamage: 1
   flashDuration: 1
   flashObject: {fileID: 3917533853415477997, guid: 3c9482f2ae53d46ada0a5d9b6358c033, type: 3}
+  flashSound: {fileID: 0}
   beamDamage: 3
-  chargeTime: 0.5
   beamDuration: 1
   beamObject: {fileID: 6489175751998623506, guid: 667f6b429c8f34cb19b2f4ed420b9b46, type: 3}
+  beamSound: {fileID: 0}
+  chargeTime: 0.5
   attackButton: 101
   positionLock: 304
 --- !u!114 &508123995
@@ -409,6 +413,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDuration: 0
   attackDamage: 0
+  doLocking: 0
+  playerObject: {fileID: 0}
 --- !u!95 &508123997 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6767420705484315828, guid: dcb295a43faa87a4cae055965ab3d40a, type: 3}
