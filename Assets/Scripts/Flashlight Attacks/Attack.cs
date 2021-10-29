@@ -8,6 +8,8 @@ public class Attack : MonoBehaviour
     public float attackDuration;
     [HideInInspector]
     public int attackDamage;
+    [HideInInspector]
+    public bool doLocking;
 
     public GameObject playerObject;
 
@@ -35,7 +37,7 @@ public class Attack : MonoBehaviour
     {
         PlayerMovement playerMovement = playerObject.GetComponent<PlayerMovement>();
 
-        playerMovement.lockPlayerMovement = true;
+        playerMovement.lockPlayerMovement = doLocking;
 
         yield return new WaitForSeconds(attackDuration);
 

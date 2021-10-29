@@ -15,8 +15,12 @@ public class PlayerHealth : MonoBehaviour
 
     [Tooltip("How many seconds the player is invincible after getting hit.")]
     public float invincibilityFrames = 1;
+    [Tooltip("Flashes per second of the invincibility flashing animation.")]
+    public int flashSpeed = 10;
     [HideInInspector]
-    public bool isInvicible = false;
+    public bool isInvincible = false;
+    float flashingAnimation = 0;
+    SpriteRenderer myRend;
 
     [Tooltip("Sound made when the player dies or restarts.")]
     public AudioClip deathSound;
@@ -37,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         myAudio = GetComponent<AudioSource>();
+        myRend = GetComponent<SpriteRenderer>();
 
         healthUI = Instantiate(heartObject, heartPosition, transform.rotation);
 
@@ -61,13 +66,20 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        flashingAnimation += Time.fixedDeltaTime * flashSpeed * 2;
+
+        myRend.enabled = (BoolToInt(isInvincible == true) * (Mathf.Round(flashingAnimation) % 2) == 0);
+    }
+
     bool isDying = false;
 
     public void dealDamage()
     {
-        if (isInvicible == false)
+        if (isInvincible == false)
         {
-            isInvicible = true;
+            isInvincible = true;
             myAudio.PlayOneShot(hurtSound);
             health--;
             StartCoroutine(invincible());
@@ -86,6 +98,11 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator invincible()
     {
         yield return new WaitForSeconds(invincibilityFrames);
-        isInvicible = false;
+        isInvincible = false;
+    }
+
+    int BoolToInt(bool i)
+    {
+        return System.Convert.ToInt32(i);
     }
 }

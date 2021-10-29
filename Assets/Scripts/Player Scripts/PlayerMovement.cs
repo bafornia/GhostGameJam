@@ -52,11 +52,26 @@ public class PlayerMovement : MonoBehaviour
     bool landingSoundPlayed = true;
     public AudioSource[] sounds;
 
+    [Tooltip("Game object with an audiosource containing the running sound set to loop.")]
+    public GameObject runningSoundManager;
+    AudioSource runningSound;
+
     void Start()
     {
         myAudio = GetComponent<AudioSource>();
         myRb = GetComponent<Rigidbody2D>();
         myBoxCol = GetComponent<BoxCollider2D>();
+
+        if (runningSoundManager == null)
+        {
+            runningSound = GameObject.Find("running sound manager").gameObject.GetComponent<AudioSource>();
+        }
+        else
+        {
+            runningSound = runningSoundManager.gameObject.GetComponent<AudioSource>();
+        }
+
+        runningSound.loop = true;
     }
 
     private void FixedUpdate()
@@ -81,9 +96,11 @@ public class PlayerMovement : MonoBehaviour
         {
             myRb.velocity = new Vector2(maxSpeed * 50 * Input.GetAxisRaw("Horizontal") * Time.fixedDeltaTime, myRb.velocity.y);
             playerVelocity = maxSpeed * Input.GetAxisRaw("Horizontal");
+            runningSound.Play();
         }
         else
         {
+            runningSound.Stop();
             myRb.velocity = new Vector2(playerVelocity, myRb.velocity.y);
         }
     }
