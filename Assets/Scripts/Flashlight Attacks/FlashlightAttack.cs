@@ -74,7 +74,14 @@ public class FlashlightAttack : MonoBehaviour
             StartCoroutine(chargeBeam());
         }
 
-        lastxInput -= BoolToInt(!(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") != 0)) * BoolToInt(Input.GetAxisRaw("Horizontal") != 0) * (lastxInput - Input.GetAxisRaw("Horizontal"));
+        if (Input.GetAxisRaw("Horizontal") != 0 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            lastxInput = Input.GetAxisRaw("Horizontal");
+        }
+        else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") != 0)
+        {
+            lastxInput = 0;
+        }
 
         if (Input.GetKeyUp(attackButton) && bufferTimer >= attackBuffer)
         {
