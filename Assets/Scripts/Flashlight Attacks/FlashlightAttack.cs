@@ -94,6 +94,7 @@ public class FlashlightAttack : MonoBehaviour
                 attackScript.attackDuration = beamDuration;
                 attackScript.attackDamage = beamDamage;
                 attackScript.doLocking = doLocking;
+                attackObject.GetComponent<SpriteRenderer>().sortingLayerName = "Flashlight";
 
                 attackScript.customStart();
 
@@ -111,6 +112,7 @@ public class FlashlightAttack : MonoBehaviour
                 attackScript.attackDuration = flashDuration;
                 attackScript.attackDamage = flashDamage;
                 attackScript.doLocking = doLocking;
+                attackObject.GetComponent<SpriteRenderer>().sortingLayerName = "Flashlight";
 
                 attackScript.customStart();
 
