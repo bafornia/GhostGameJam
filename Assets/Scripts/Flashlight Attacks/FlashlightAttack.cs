@@ -8,6 +8,8 @@ public class FlashlightAttack : MonoBehaviour
     [Tooltip("Time before the player can attack again.")]
     public float attackBuffer = 0.1f;
     float bufferTimer = 0;
+    [Tooltip("Lock player movement while attacking?")]
+    public bool doLocking = true;
 
     [Tooltip("How much damage the AOE flash attack does.")]
     public int flashDamage = 1;
@@ -91,6 +93,7 @@ public class FlashlightAttack : MonoBehaviour
                 attackScript.playerObject = gameObject;
                 attackScript.attackDuration = beamDuration;
                 attackScript.attackDamage = beamDamage;
+                attackScript.doLocking = doLocking;
 
                 attackScript.customStart();
 
@@ -107,6 +110,7 @@ public class FlashlightAttack : MonoBehaviour
                 attackScript.playerObject = gameObject;
                 attackScript.attackDuration = flashDuration;
                 attackScript.attackDamage = flashDamage;
+                attackScript.doLocking = doLocking;
 
                 attackScript.customStart();
 
