@@ -105,6 +105,11 @@ public class PlayerMovement : MonoBehaviour
             runningSound.Stop();
             myRb.velocity = new Vector2(playerVelocity, myRb.velocity.y);
         }
+
+        if (!IsGrounded())
+        {
+            runningSound.Stop();
+        }
     }
 
     void Update()

@@ -23,6 +23,13 @@ public class GhostAI : MonoBehaviour
     [Tooltip("How far the ghost will chase the player from its starting point before it gives up.")]
     public float giveUpRange = 10;
 
+    [Tooltip("Sound that plays when the player gets close to the ghost.")]
+    public AudioClip spookySound;
+    [Tooltip("How far the player can be from the ghost and still hear the spooky sound.")]
+    public float spookySoundDistance;
+    AudioSource myAudio;
+    bool spookySoundDone = true;
+
     float floatingAnimation = 0;
     float floatingPosition;
     
@@ -30,6 +37,9 @@ public class GhostAI : MonoBehaviour
      
     void Start()
     {
+        myAudio = GetComponent<AudioSource>();
+        myAudio.volume = 0;
+
         if (player == null)
         {
             player = GameObject.Find("player");
@@ -40,6 +50,12 @@ public class GhostAI : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (spookySoundDone)
+        {
+            StartCoroutine(spookySoundEffect());
+        }
+        myAudio.volume = (spookySoundDistance - (player.transform.position - transform.position).magnitude) / spookySoundDistance;
+
         // floating animation
 
         floatingAnimation += 50 * Time.fixedDeltaTime;
@@ -74,5 +90,13 @@ public class GhostAI : MonoBehaviour
         {
             healthScript.dealDamage();
         }
+    }
+
+    IEnumerator spookySoundEffect()
+    {
+        spookySoundDone = false;
+        myAudio.PlayOneShot(spookySound);
+        yield return new WaitForSeconds(spookySound.length);
+        spookySoundDone = true;
     }
 }
