@@ -6,9 +6,13 @@ public class GhostHealth : MonoBehaviour
 {
     public int health = 2;
 
+    [Tooltip("Sound that plays when the ghost gets hurt.")]
+    public AudioClip hurtSound;
+    AudioSource myAudio;
+
     void Start()
     {
-        
+        myAudio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -21,6 +25,7 @@ public class GhostHealth : MonoBehaviour
 
     public void DealDamage(int damage)
     {
+        myAudio.PlayOneShot(hurtSound);
         health -= damage;
     }
 

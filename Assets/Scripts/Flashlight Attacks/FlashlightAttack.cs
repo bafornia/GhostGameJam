@@ -30,7 +30,7 @@ public class FlashlightAttack : MonoBehaviour
     public AudioClip beamSound;
     [Tooltip("How long it takes to charge the beam attack.")]
     public float chargeTime = 0.5f;
-    float chargeTimer = 0;
+    bool beamCharged = false;
 
     AudioSource myAudio;
     GameObject attackObject;
@@ -59,7 +59,6 @@ public class FlashlightAttack : MonoBehaviour
     void Update()
     {
         bufferTimer += Time.deltaTime;
-        chargeTimer += Time.deltaTime;
 
         if (Input.GetKeyDown(positionLock))
         {
@@ -72,17 +71,17 @@ public class FlashlightAttack : MonoBehaviour
 
         if (Input.GetKeyDown(attackButton) && bufferTimer >= attackBuffer)
         {
-            chargeTimer = 0;
+            StartCoroutine(chargeBeam());
         }
 
-        lastxInput -= BoolToInt(Input.GetAxisRaw("Horizontal") != 0) * (lastxInput - Input.GetAxisRaw("Horizontal"));
+        lastxInput -= BoolToInt(!(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") != 0)) * BoolToInt(Input.GetAxisRaw("Horizontal") != 0) * (lastxInput - Input.GetAxisRaw("Horizontal"));
 
         if (Input.GetKeyUp(attackButton) && bufferTimer >= attackBuffer)
         {
             Quaternion angle = Quaternion.AngleAxis(Mathf.Rad2Deg *
                                Mathf.Atan2(Input.GetAxisRaw("Vertical"), lastxInput), transform.forward);
 
-            if (chargeTimer >= chargeTime)  // beam attack
+            if (beamCharged == true)  // beam attack
             {
                 myAudio.PlayOneShot(beamSound);
 
@@ -118,7 +117,16 @@ public class FlashlightAttack : MonoBehaviour
 
                 bufferTimer = 0 - flashDuration;
             }
+
+            beamCharged = false;
         }
+    }
+
+    IEnumerator chargeBeam()
+    {
+        beamCharged = false;
+        yield return new WaitForSeconds(chargeTime);
+        beamCharged = true;
     }
 
     int BoolToInt(bool i)
