@@ -15,7 +15,7 @@ TagManager:
   - Character
   - Flashlight
   - Platform
-  - 
+  - BG Decors
   - 
   - 
   - 
@@ -38,9 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3273754919
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Flashlight
-    uniqueID: 3273754919
     locked: 0
